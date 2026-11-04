@@ -389,7 +389,6 @@ public class EmergencyDispatchSystem extends JFrame {
         );
     }
 
-    // MANUAL LINEAR SEARCH
     private Incident searchById(String id) {
 
         for (int i = 0; i < recordCount; i++) {
@@ -404,7 +403,6 @@ public class EmergencyDispatchSystem extends JFrame {
         return null;
     }
 
-    // SEARCH BUTTON
     private void searchIncident(ActionEvent event) {
 
         String id = searchField.getText().trim();
@@ -458,7 +456,6 @@ public class EmergencyDispatchSystem extends JFrame {
         }
     }
 
-    // DISPLAY ALL INCIDENTS
     private void refreshTable(ActionEvent event) {
         refreshTable();
     }
@@ -487,7 +484,6 @@ public class EmergencyDispatchSystem extends JFrame {
         }
     }
 
-    // INCREASE RECORD ARRAY CAPACITY
     private void ensureRecordCapacity() {
 
         if (recordCount < records.length) {
@@ -504,7 +500,6 @@ public class EmergencyDispatchSystem extends JFrame {
         records = newRecords;
     }
 
-    // CLEAR INPUT FIELDS
     private void clearFields() {
 
         idField.setText("");
@@ -516,7 +511,6 @@ public class EmergencyDispatchSystem extends JFrame {
         priorityCombo.setSelectedIndex(0);
     }
 
-    // ACTIVITY HISTORY
     private void log(String message) {
 
         activityArea.append(message + "\n");
@@ -526,7 +520,6 @@ public class EmergencyDispatchSystem extends JFrame {
         );
     }
 
-    // MAIN METHOD
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
