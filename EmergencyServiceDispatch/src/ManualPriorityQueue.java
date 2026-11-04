@@ -13,7 +13,7 @@ public class ManualPriorityQueue {
         size = 0;
     }
 
-    // ADD INCIDENT
+    
     public void enqueue(Incident incident) {
 
         if (size == queue.length) {
@@ -22,7 +22,6 @@ public class ManualPriorityQueue {
 
         int position = size;
 
-        // Arrange according to priority
         while (position > 0 &&
                queue[position - 1].getPriority()
                > incident.getPriority()) {
@@ -35,7 +34,6 @@ public class ManualPriorityQueue {
         size++;
     }
 
-    // REMOVE HIGHEST-PRIORITY INCIDENT
     public Incident dequeue() {
 
         if (isEmpty()) {
@@ -54,7 +52,6 @@ public class ManualPriorityQueue {
         return highest;
     }
 
-    // VIEW NEXT INCIDENT
     public Incident peek() {
 
         if (isEmpty()) {
@@ -64,7 +61,6 @@ public class ManualPriorityQueue {
         return queue[0];
     }
 
-    // GET INCIDENT BY INDEX
     public Incident getAt(int index) {
 
         if (index < 0 || index >= size) {
@@ -74,17 +70,14 @@ public class ManualPriorityQueue {
         return queue[index];
     }
 
-    // GET QUEUE SIZE
     public int getSize() {
         return size;
     }
 
-    // CHECK IF EMPTY
     public boolean isEmpty() {
         return size == 0;
     }
 
-    // INCREASE ARRAY CAPACITY
     private void resize() {
 
         Incident[] newQueue =
