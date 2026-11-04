@@ -67,27 +67,5 @@ public class ManualPriorityQueue {
             return null;
         }
 
-        return queue[index];
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    private void resize() {
-
-        Incident[] newQueue =
-            new Incident[queue.length * 2];
-
-        for (int i = 0; i < size; i++) {
-            newQueue[i] = queue[i];
-        }
-
-        queue = newQueue;
-    }
-}
+       
 
