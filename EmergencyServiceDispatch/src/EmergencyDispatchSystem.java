@@ -1,6 +1,5 @@
 
 package emergencyservicedispatch2;
-//hi clark Dalapag//
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,14 +8,14 @@ import java.awt.event.ActionEvent;
 
 public class EmergencyDispatchSystem extends JFrame {
 
-    // DATA STRUCTURE
+    
     private ManualPriorityQueue queue;
 
-    // STORE ALL RECORDS, INCLUDING DISPATCHED INCIDENTS
+    
     private Incident[] records;
     private int recordCount;
 
-    // GUI COMPONENTS
+    
     private DefaultTableModel tableModel;
     private JTable incidentTable;
 
@@ -44,7 +43,7 @@ public class EmergencyDispatchSystem extends JFrame {
 
         setLayout(new BorderLayout(10, 10));
 
-        // HEADER
+       
         JLabel title = new JLabel(
             "EMERGENCY SERVICE DISPATCH SYSTEM",
             SwingConstants.CENTER
@@ -60,7 +59,7 @@ public class EmergencyDispatchSystem extends JFrame {
 
         add(title, BorderLayout.NORTH);
 
-        // MAIN PANEL
+        
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
 
         mainPanel.setBorder(
@@ -69,7 +68,7 @@ public class EmergencyDispatchSystem extends JFrame {
 
         add(mainPanel, BorderLayout.CENTER);
 
-        // LEFT PANEL
+        
         JPanel leftPanel = new JPanel(new GridLayout(2, 1, 5, 10));
 
         leftPanel.add(createRegistrationPanel());
@@ -79,7 +78,7 @@ public class EmergencyDispatchSystem extends JFrame {
 
         mainPanel.add(leftPanel, BorderLayout.WEST);
 
-        // INCIDENT TABLE
+        
         String[] columns = {
             "Incident ID",
             "Emergency Type",
@@ -113,7 +112,7 @@ public class EmergencyDispatchSystem extends JFrame {
 
         tablePanel.add(tableScroll, BorderLayout.CENTER);
 
-        // ACTION BUTTONS
+        
         JPanel buttonPanel = new JPanel();
 
         JButton viewButton =
@@ -133,7 +132,7 @@ public class EmergencyDispatchSystem extends JFrame {
 
         mainPanel.add(tablePanel, BorderLayout.CENTER);
 
-        // ACTIVITY HISTORY
+        
         activityArea = new JTextArea(5, 30);
         activityArea.setEditable(false);
         activityArea.setLineWrap(true);
@@ -154,7 +153,7 @@ public class EmergencyDispatchSystem extends JFrame {
         refreshTable();
     }
 
-    // REGISTRATION PANEL
+    
     private JPanel createRegistrationPanel() {
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -210,7 +209,7 @@ public class EmergencyDispatchSystem extends JFrame {
         return panel;
     }
 
-    // ADD FORM LABELS AND FIELDS
+    
     private void addField(
         JPanel panel,
         GridBagConstraints c,
@@ -233,7 +232,7 @@ public class EmergencyDispatchSystem extends JFrame {
         panel.add(field, c);
     }
 
-    // SEARCH PANEL
+    
     private JPanel createSearchPanel() {
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -271,7 +270,7 @@ public class EmergencyDispatchSystem extends JFrame {
         return panel;
     }
 
-    // REGISTER INCIDENT
+    
     private void registerIncident(ActionEvent event) {
 
         String id = idField.getText().trim();
@@ -279,7 +278,7 @@ public class EmergencyDispatchSystem extends JFrame {
         String location = locationField.getText().trim();
         String description = descriptionField.getText().trim();
 
-        // CHECK REQUIRED FIELDS
+        
         if (id.isEmpty() ||
             reporter.isEmpty() ||
             location.isEmpty() ||
@@ -295,7 +294,7 @@ public class EmergencyDispatchSystem extends JFrame {
             return;
         }
 
-        // CHECK DUPLICATE ID
+        
         if (searchById(id) != null) {
 
             JOptionPane.showMessageDialog(
@@ -314,7 +313,7 @@ public class EmergencyDispatchSystem extends JFrame {
         int priority =
             priorityCombo.getSelectedIndex() + 1;
 
-        // CREATE INCIDENT
+        
         Incident incident = new Incident(
             id,
             reporter,
@@ -324,13 +323,13 @@ public class EmergencyDispatchSystem extends JFrame {
             priority
         );
 
-        // SAVE TO MASTER RECORD ARRAY
+        
         ensureRecordCapacity();
 
         records[recordCount] = incident;
         recordCount++;
 
-        // ADD TO PRIORITY QUEUE
+        
         queue.enqueue(incident);
 
         log("Registered incident: " + id);
@@ -346,7 +345,7 @@ public class EmergencyDispatchSystem extends JFrame {
         );
     }
 
-    // DISPATCH HIGHEST PRIORITY
+    
     private void dispatchIncident(ActionEvent event) {
 
         if (queue.isEmpty()) {
@@ -361,10 +360,10 @@ public class EmergencyDispatchSystem extends JFrame {
             return;
         }
 
-        // REMOVE THE HIGHEST PRIORITY
+        
         Incident incident = queue.dequeue();
 
-        // UPDATE STATUS
+        
         incident.setDispatched(true);
 
         log(
